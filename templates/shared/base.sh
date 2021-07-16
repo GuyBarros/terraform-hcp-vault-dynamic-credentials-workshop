@@ -3,31 +3,6 @@ set -x
 
 echo "==> Base"
 
-echo "==> libc6 issue workaround"
-echo 'libc6 libraries/restart-without-asking boolean true' | sudo debconf-set-selections
-
-function install_from_url {
-  cd /tmp && {
-    curl -sfLo "$${1}.zip" "$${2}"
-    unzip -qq "$${1}.zip"
-    sudo mv "$${1}" "/usr/local/bin/$${1}"
-    sudo chmod +x "/usr/local/bin/$${1}"
-    rm -rf "$${1}.zip"
-  }
-}
-
-
-echo "--> Adding helper for IP retrieval"
-sudo tee /etc/profile.d/ips.sh > /dev/null <<EOF
-function private_ip {
-  curl -s http://169.254.169.254/latest/meta-data/local-ipv4
-}
-
-function public_ip {
-  curl -s http://169.254.169.254/latest/meta-data/public-ipv4
-}
-EOF
-source /etc/profile.d/ips.sh
 
 echo "--> Updating apt-cache"
 ssh-apt update
@@ -36,43 +11,18 @@ echo "--> Adding Hashicorp repo"
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
  sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
-echo "--> updated version of Nodejs"
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-
 echo "--> Installing common dependencies"
 apt-get install -y \
-  build-essential \
-  nodejs \
   curl \
-  emacs \
+  nano \
   git \
   jq \
-  tmux \
   unzip \
-  vim \
-  wget \
-  tree \
-  nfs-kernel-server \
-  nfs-common \
-  python3-pip \
-  ruby-full \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common \
-  openjdk-14-jdk-headless \
-  prometheus-node-exporter \
-  golang-go \
-  alien \
   vault-enterprise \
   terraform
-
 echo "--> making a path to save vault config files"
 sudo mkdir -p /etc/vault.d/
 
-echo "--> Giving user ubuntu Read/Write access to vault.d directory"
-sudo chown -R ubuntu:ubuntu /etc/vault.d/
 
 echo "--> saving the database info"
 sudo tee /etc/vault.d/terraform.tfvars > /dev/null <<EOF
@@ -208,23 +158,24 @@ resource "vault_mount" "mysql" {
   type = "database"
 }
 
-resource "vault_database_secret_backend_connection" "mysql" {
+resource "vault_database_secret_backend_connection" "mysql-con" {
   provider = vault.mysql
   backend       = vault_mount.mysql.path
-  name          = "mysql"
+  name          = "mysql-con"
   allowed_roles = ["mysql-role"]
 
 mysql_rds{
-    connection_url="{{username}}:{{password}}@tcp(${mysql_hostname}:${mysql_port})/"
+    connection_url="${mysql_username}:${mysql_password}@tcp(${mysql_hostname}:${mysql_port})/"
     }
 
 }
 
 resource "vault_database_secret_backend_role" "mysql-role" {
-   provider = vault.postgres
+  depends_on = [vault_database_secret_backend_connection.mysql-con]
+   provider = vault.mysql
   backend             = vault_mount.mysql.path
   name                = "mysql-role"
-  db_name             = vault_database_secret_backend_connection.mysql.name
+  db_name             = vault_database_secret_backend_connection.mysql-con.name
   creation_statements = ["CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';"]
 }
 
@@ -238,10 +189,10 @@ resource "vault_mount" "postgres" {
   type = "database"
 }
 
-resource "vault_database_secret_backend_connection" "postgres" {
+resource "vault_database_secret_backend_connection" "postgres-con" {
   provider = vault.postgres
   backend       = vault_mount.postgres.path
-  name          = "postgres"
+  name          = "postgres-con"
   allowed_roles = ["postgres-role"]
 
   postgresql {
@@ -250,10 +201,11 @@ resource "vault_database_secret_backend_connection" "postgres" {
 }
 
 resource "vault_database_secret_backend_role" "postgres-role" {
+  depends_on = [vault_database_secret_backend_connection.postgres-con]
    provider = vault.postgres
   backend             = vault_mount.postgres.path
   name                = "postgres-role"
-  db_name             = vault_database_secret_backend_connection.postgres.name
+  db_name             =  vault_database_secret_backend_connection.postgres-con.name
   creation_statements = ["CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"]
 }
 EOF
@@ -266,9 +218,10 @@ resource "vault_mount" "mysql_api" {
 }
 
 resource "vault_generic_endpoint" "test_mysqldb" {
+  depends_on = [vault_mount.mysql_api]
  provider = vault.mysql
 
-  path = "/mysql_api/config/mydb"
+  path = "mysql_api/config/my-mysql-database"
   ignore_absent_fields = true
 
   data_json = <<EOT
@@ -283,10 +236,11 @@ EOT
 }
 
 resource "vault_database_secret_backend_role" "mysql_api-role" {
+  depends_on = [vault_mount.mysql_api,vault_generic_endpoint.test_mysqldb]
    provider = vault.mysql
   backend             = vault_mount.mysql_api.path
   name                = "mysql_api-role"
-  db_name             = "mydb"
+  db_name             = "my-mysql-database"
   creation_statements = ["CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';"]
 }
 
@@ -296,17 +250,17 @@ EOF
 #configure Vault Via Script
 sudo tee /etc/vault.d/config_mysql.sh > /dev/null <<EOF
 ################# MYSQL
- vault secrets enable -path=mysql database
+ vault secrets enable -path=mysql_script database
 
-vault write mysql/config/my-mysql-database \
+vault write mysql_script/config/my-mysql-database \
 plugin_name=mysql-rds-database-plugin \
 connection_url="{{username}}:{{password}}@tcp(${mysql_hostname}:${mysql_port})/" \
 allowed_roles="my-role" \
 username="${mysql_username}" \
 password="${mysql_password}"
 
-vault write mysql/roles/my-role \
-    db_name=my-mysql-database \
+vault write mysql_script/roles/my-role \
+    db_name="my-mysql-database" \
     creation_statements="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';" \
     default_ttl="1h" \
     max_ttl="24h"
@@ -320,14 +274,20 @@ sudo tee /etc/vault.d/config_postgres.sh > /dev/null <<EOF
 ################# PostGres
  vault secrets enable -path=postgres database
 
-vault write database/config/postgresql \
+vault write postgres/config/postgresql \
  plugin_name=postgresql-database-plugin \
  connection_url="postgresql://{{username}}:{{password}}@${postgres_hostname}:${postgres_port}/${postgres_name}?sslmode=disable" \
  allowed_roles=readonly \
  username="${postgres_username}" \
  password="${postgres_password}"
 
-vault read mysql/creds/my-role
+ vault write postgres/roles/postgresql \
+    db_name="postgresql" \
+    creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"
+    default_ttl="1h" \
+    max_ttl="24h"
+
+vault read postgres/creds/postgresql
 
 #############################
 EOF
@@ -336,11 +296,13 @@ export VAULT_TOKEN=${hcp_vault_admin_token}
 export VAULT_ADDR=${hcp_vault_addr}
 export VAULT_NAMESPACE=admin
 
-echo "export VAULT_TOKEN=$VAULT_TOKEN" >> ~/.bashrc
-echo "export VAULT_ADDR=$VAULT_ADDR" >> ~/.bashrc
-echo "export VAULT_NAMESPACE=$VAULT_NAMESPACE" >> ~/.bashrc
+echo "export VAULT_TOKEN=$VAULT_TOKEN" >> /home/ubuntu/.bashrc
+echo "export VAULT_ADDR=$VAULT_ADDR" >> /home/ubuntu/.bashrc
+echo "export VAULT_NAMESPACE=$VAULT_NAMESPACE" >> /home/ubuntu/.bashrc
 
 echo "export VAULT_TOKEN=$VAULT_TOKEN" >> /root/.bashrc
 echo "export VAULT_ADDR=$VAULT_ADDR" >> /root/.bashrc
 echo "export VAULT_NAMESPACE=$VAULT_NAMESPACE" >> /root/.bashrc
 
+echo "--> Giving user ubuntu Read/Write access to vault.d directory"
+sudo chown -R ubuntu:ubuntu /etc/vault.d/
