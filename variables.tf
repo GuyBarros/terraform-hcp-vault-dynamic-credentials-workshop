@@ -2,15 +2,36 @@
 locals {
   # Common tags to be assigned to all resources
   common_tags = {
-    Name      = "Workshop"
-    owner     = "SE"
+    Name      = var.name
+    owner     = var.owner
     se-region = var.region
     terraform = true
-    purpose   = "HCP Vault"
+    purpose   = var.purpose
+    ttl       = "4h"
   }
 }
 
+#Tags
+variable "name" {
+  description = <<EOH
+Name to be added to the default tags
+EOH
+}
 
+variable "owner" {
+  description = <<EOH
+owner to be added to the default tags
+EOH
+}
+
+variable "purpose" {
+  description = <<EOH
+purpose to be added to the default tags
+EOH
+}
+
+
+#Enviroment
 variable "namespace" {
   description = <<EOH
 this is the differantiates different HCP Instruqt workshop deployment on the same subscription, everycluster should have a different value
@@ -37,21 +58,21 @@ variable "cidr_blocks" {
   default     = ["10.1.1.0/24", "10.1.2.0/24"]
 }
 
-variable "zone_id" {
-  description = "The CIDR blocks to create the workstations in."
-  default     = ""
-}
 
 variable "instance_type_worker" {
   description = "The type(size) of data servers (consul, nomad, etc)."
   default     = "t3.small"
 }
 
+
+#Security
 variable "host_access_ip" {
   description = "CIDR blocks allowed to connect via SSH on port 22"
   type        = list(string)
   default     = []
 }
+
+#HCP
 variable "hashi_region" {
   description = "the region the owner belongs in.  e.g. NA-WEST-ENT, EU-CENTRAL"
   default     = "EMEA"
