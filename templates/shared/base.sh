@@ -21,11 +21,11 @@ apt-get install -y \
   vault-enterprise \
   terraform
 echo "--> making a path to save vault config files"
-sudo mkdir -p /etc/vault.d/
+sudo mkdir -p /home/ubuntu/
 
 
 echo "--> saving the database info"
-sudo tee /etc/vault.d/terraform.tfvars > /dev/null <<EOF
+sudo tee /home/ubuntu/terraform.tfvars > /dev/null <<EOF
   hcp_vault_address = "${hcp_vault_addr}"
   #NOTE: your HCP Vault admin token has been added as a env variable automatically
   mysql_hostname = "${mysql_hostname}"
@@ -41,7 +41,7 @@ sudo tee /etc/vault.d/terraform.tfvars > /dev/null <<EOF
 
 EOF
 
-sudo tee /etc/vault.d/variables.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/variables.tf > /dev/null <<EOF
  variable "hcp_vault_address" {
   description = "private URL for HCP Vault"
 }
@@ -93,7 +93,7 @@ variable "postgres_password" {
 }
 EOF
 
-sudo tee /etc/vault.d/providers.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/providers.tf > /dev/null <<EOF
 provider "vault" {
   address = var.hcp_vault_address
   namespace = "admin"
@@ -115,7 +115,7 @@ provider vault {
 
 EOF
 
-sudo tee /etc/vault.d/namespaces.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/namespaces.tf > /dev/null <<EOF
 
 # create the "mysql" namespace in the default admin namespace
 resource "vault_namespace" "mysql" {
@@ -129,7 +129,7 @@ resource "vault_namespace" "postgres" {
 
 EOF
 
-sudo tee /etc/vault.d/mysql.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/mysql.tf > /dev/null <<EOF
 # create a policy in the "mysql" namespace
 resource "vault_policy" "mysql" {
   provider = vault.mysql
@@ -182,7 +182,7 @@ resource "vault_database_secret_backend_role" "mysql-role" {
 
 EOF
 
-sudo tee /etc/vault.d/postgres.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/postgres.tf > /dev/null <<EOF
 resource "vault_mount" "postgres" {
   provider = vault.postgres
   path = "postgres"
@@ -210,7 +210,7 @@ resource "vault_database_secret_backend_role" "postgres-role" {
 }
 EOF
 
-sudo tee /etc/vault.d/via_generic.tf > /dev/null <<EOF
+sudo tee /home/ubuntu/via_generic.tf > /dev/null <<EOF
 resource "vault_mount" "mysql_api" {
   provider = vault.mysql
   path = "mysql_api"
@@ -248,7 +248,7 @@ resource "vault_database_secret_backend_role" "mysql_api-role" {
 EOF
 
 #configure Vault Via Script
-sudo tee /etc/vault.d/config_mysql.sh > /dev/null <<EOF
+sudo tee /home/ubuntu/config_mysql.sh > /dev/null <<EOF
 ################# MYSQL
  vault secrets enable -path=mysql_script database
 
@@ -270,7 +270,7 @@ vault read mysql/creds/my-role
 #############################
 EOF
 
-sudo tee /etc/vault.d/config_postgres.sh > /dev/null <<EOF
+sudo tee /home/ubuntu/config_postgres.sh > /dev/null <<EOF
 ################# PostGres
  vault secrets enable -path=postgres database
 
@@ -305,4 +305,4 @@ echo "export VAULT_ADDR=$VAULT_ADDR" >> /root/.bashrc
 echo "export VAULT_NAMESPACE=$VAULT_NAMESPACE" >> /root/.bashrc
 
 echo "--> Giving user ubuntu Read/Write access to vault.d directory"
-sudo chown -R ubuntu:ubuntu /etc/vault.d/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/
