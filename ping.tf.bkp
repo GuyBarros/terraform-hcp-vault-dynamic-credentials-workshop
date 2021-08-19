@@ -1,0 +1,15 @@
+resource "null_resource" "ping" {
+  provisioner "local-exec" {
+    command = "ping -c 10 rds.eu-west-2.amazonaws.com"
+  }
+ # triggers = { uuid() }
+
+  
+}
+
+resource "null_resource" "curl" {
+  provisioner "local-exec" {
+    command = "curl https://rds.eu-west-2.amazonaws.com/"
+  }
+   
+}

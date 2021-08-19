@@ -51,10 +51,12 @@ output "postgres_name" {
   sensitive = false
 }
 
+
 ////////////////////// AWS //////////////////////
 output "workers" {
   value = aws_instance.workers.public_dns
 }
+
 
 ////////////////////// HCP //////////////////////
 output "hcp_vault_private_address" {
