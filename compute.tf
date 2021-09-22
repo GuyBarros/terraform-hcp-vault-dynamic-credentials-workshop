@@ -51,5 +51,12 @@ resource "aws_instance" "workers" {
     delete_on_termination = "true"
   }
 
+  tags = merge(local.common_tags ,{
+   Purpose        = var.namespace ,
+   function       = "Linux" 
+   Name            = "${var.namespace}-Linux" ,
+   }
+  )
+
   user_data = data.template_cloudinit_config.workers.rendered
 }
