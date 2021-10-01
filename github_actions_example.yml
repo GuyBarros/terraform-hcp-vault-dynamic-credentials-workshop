@@ -1,0 +1,33 @@
+name: ImageBuilder
+# Run this workflow every time a new commit pushed to your repository
+on: push
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Get AppRole RoleID
+        id: get_aprole_role_id
+        run: echo "::set-output name=roleId::$(vault read -field=role_id auth/approle/role/github/role-id)"
+      - name: Get AppRole SecretID
+        id: get_aprole_secret_id
+        run: echo "::set-output name=secretId::$(vault write -f -field=secret_id auth/approle/role/github/secret-id)"
+      - name: Test AppRole RoleID
+        id: test_aprole_roleid
+        run: echo ${{ steps.get_aprole_role_id.outputs.roleId }}
+      - name: Test AppRole Secret ID
+        id: test_aprole_secretID
+        run: echo ${{ steps.get_aprole_secret_id.outputs.secretId }}
+      - name: Import Secrets
+        id: secrets
+        uses: hashicorp/vault-action@v2.3.1
+        with:
+          url: https://hcpvaultworkshop-vault.private.vault.90c8be71-8b86-4967-b3d0-913bf19b96a0.aws.hashicorp.cloud:8200
+          tlsSkipVerify: true
+          namespace: admin
+          method: approle
+          roleId: ${{ steps.get_aprole_role_id.outputs.roleId }}
+          secretId: ${{ steps.get_aprole_secret_id.outputs.secretId }}
+          secrets: |
+            kv/data/ci_app_secret app_secret | APP_SECRET
+      - name: Build Docker Image
+        run: docker build . --file Dockerfile --build-arg app_secret="${{ steps.secrets.outputs.APP_SECRET }}" -t vault-action-exampleapp

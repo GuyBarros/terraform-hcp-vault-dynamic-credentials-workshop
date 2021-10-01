@@ -21,6 +21,25 @@ apt-get install -y \
   vault-enterprise \
   terraform
 
+echo "==> Docker"
+
+echo "--> Adding keyserver"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &>/dev/null
+
+echo "--> Adding repo"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+echo "--> Updating cache"
+apt update -y
+
+echo "--> Installing"
+apt install -y docker-ce
+
+echo "--> Allowing docker without sudo"
+sudo usermod -aG docker "$(whoami)"
+
+echo "==> Docker is done!"
+
 
 echo "--> saving the database info"
 sudo tee /home/ubuntu/terraform.tfvars > /dev/null <<EOF
@@ -302,9 +321,117 @@ echo "export VAULT_TOKEN=$VAULT_TOKEN" >> /root/.bashrc
 echo "export VAULT_ADDR=$VAULT_ADDR" >> /root/.bashrc
 echo "export VAULT_NAMESPACE=$VAULT_NAMESPACE" >> /root/.bashrc
 
+#############################   PKI ##################################################
+sudo tee /home/ubuntu/kubernetes_pki.tf > /dev/null <<EOF
+resource "vault_mount" "kubernetes_root" {
+  path                  = "kubernetes_root"
+  type                  = "pki"
+  max_lease_ttl_seconds = 315360000 # 10 years
+}
+
+resource "vault_pki_secret_backend_root_cert" "kubernetes_root" {
+  backend = vault_mount.kubernetes_root.path
+
+  type                 = "internal"
+  ttl                  = "87600h"
+  key_type             = "rsa"
+  exclude_cn_from_sans = true
+  ////////////////////////////////////////////////////////////////
+  common_name = "kubernetes-ca"
+  # ttl = "15768000s"
+  format             = "pem"
+  private_key_format = "der"
+  # key_type = "rsa"
+  key_bits = 2048
+  # exclude_cn_from_sans = true
+  //////////////////////////////////////////////////////////
+}
+
+resource "vault_mount" "kubernetes_int" {
+  path                  = "kubernetes_int"
+  type                  = "pki"
+  max_lease_ttl_seconds = 157680000 # 5 years
+}
+
+resource "vault_pki_secret_backend_intermediate_cert_request" "kubernetes_int" {
+  backend = vault_mount.kubernetes_int.path
+
+  type        = "internal"
+  common_name = "kubernetes-ca"
+  key_type    = "rsa"
+  key_bits    = "2048"
+}
+
+resource "vault_pki_secret_backend_root_sign_intermediate" "kubernetes_int" {
+  backend = vault_mount.kubernetes_root.path
+
+  csr                  = vault_pki_secret_backend_intermediate_cert_request.kubernetes_int.csr
+  common_name          = "kubernetes-ca"
+  ttl                  = "43800h"
+  exclude_cn_from_sans = true
+}
+
+resource "vault_pki_secret_backend_intermediate_set_signed" "kubernetes_int" {
+  backend     = vault_mount.kubernetes_int.path
+  certificate = vault_pki_secret_backend_root_sign_intermediate.kubernetes_int.certificate
+}
+
+resource "vault_pki_secret_backend_role" "kubernetes-ca" {
+  backend = vault_mount.kubernetes_int.path
+  name    = "kubernetes-ca"
+  # allowed_domains    = ["example.io"]
+  allow_bare_domains = true #
+  allow_subdomains   = true #
+  allow_glob_domains = true #
+  allow_any_name     = true # adjust allow_*, flags accordingly
+  allow_ip_sans      = true #
+  server_flag        = true #
+  client_flag        = true #
+ key_usage = ["DigitalSignature", "KeyAgreement", "KeyEncipherment","KeyUsageCertSign"]
+  max_ttl = "730h" # ~1 month
+  ttl     = "730h"
+}
+
+resource "vault_pki_secret_backend_role" "kube-apiserver-kubelet-client" {
+  backend = vault_mount.kubernetes_int.path
+  name    = "kubernetes-ca"
+  # allowed_domains    = ["example.io"]
+  allow_bare_domains = true #
+  allow_subdomains   = true #
+  allow_glob_domains = true #
+  allow_any_name     = true # adjust allow_*, flags accordingly
+  allow_ip_sans      = true #
+  server_flag        = true #
+  client_flag        = true #
+  organization       = ["system:masters"]
+ key_usage = ["DigitalSignature", "KeyAgreement", "KeyEncipherment","KeyUsageCertSign"]
+  max_ttl = "730h" # ~1 month
+  ttl     = "730h"
+}
+EOF
+
+############################# Github Action runner #####################################
+echo "==> Github Actions Runner"
+mkdir /home/ubuntu/actions-runner && cd /home/ubuntu/actions-runner
+
+echo "==> Download the latest runner package"
+curl -o actions-runner-linux-x64-2.283.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.283.1/actions-runner-linux-x64-2.283.1.tar.gz
+echo "==> Validate the hash"
+echo "aebaaf7c00f467584b921f432f9f9fb50abf06e1b6b226545fbcbdaa65ed3031  actions-runner-linux-x64-2.283.1.tar.gz" | shasum -a 256 -c
+echo "==> Extract the installer"
+tar xzf ./actions-runner-linux-x64-2.283.1.tar.gz
+
 echo "--> Giving user ubuntu Read/Write access to vault.d directory"
 sudo chown -R ubuntu:ubuntu /home/ubuntu/
 
 cd /home/ubuntu/
 
+############
+## Add here the code to fix docker if you continue to have issues with github runners
+###########
+
+
 terraform init
+
+
+

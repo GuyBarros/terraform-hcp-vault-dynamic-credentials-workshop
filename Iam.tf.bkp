@@ -1,0 +1,26 @@
+locals {
+  name     = "vault-demo-hcp-guy"
+  my_email = "guy@hashicorp.com"  # this _must_ match the doormat identity
+}
+
+data "aws_iam_policy" "permissions_boundary" {
+  name = "VaultDemoPermissionsBoundary"
+}
+
+resource "aws_iam_user" "vault_aws_user" {
+  name = local.name
+  tags = { vault-demo : local.my_email }  # this is required
+
+  permissions_boundary = data.aws_iam_policy.permissions_boundary.arn
+}
+resource "aws_iam_user_policy" "user" {
+  name   = "AWSEC2VaultAuth"
+  user   = aws_iam_user.vault_aws_user.name
+  policy = data.aws_iam_policy_document.user.json
+}
+data "aws_iam_policy_document" "user" {
+  statement {
+    actions   = ["ec2:DescribeInstances", "iam:GetInstanceProfile"]
+    resources = ["*"]
+  }
+}

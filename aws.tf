@@ -79,6 +79,38 @@ resource "aws_security_group" "demostack" {
     }
   }
 
+  # RDS access if host_access_ip has CIDR blocks
+  dynamic "ingress" {
+    for_each = var.host_access_ip
+    content {
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
+  }
+
+  # LDAP
+  dynamic "ingress" {
+    for_each = var.host_access_ip
+    content {
+      from_port   = 389
+      to_port     = 389
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
+  }
+
+    # sLDAP
+  dynamic "ingress" {
+    for_each = var.host_access_ip
+    content {
+      from_port   = 636
+      to_port     = 636
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
+  }
   ######## HCP
 
   ingress {
@@ -99,6 +131,22 @@ resource "aws_security_group" "demostack" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [hcp_hvn.demostack.cidr_block]
+  }
+
+
+  ingress {
+    from_port   = 389
+    to_port     = 389
+    protocol    = "tcp"
+    cidr_blocks = [hcp_hvn.demostack.cidr_block]
+  }
+
+
+  ingress {
+    from_port   = 636
+    to_port     = 636
     protocol    = "tcp"
     cidr_blocks = [hcp_hvn.demostack.cidr_block]
   }
@@ -256,6 +304,8 @@ data "aws_iam_policy_document" "vault-server" {
       "ec2:DescribeVolumes",
       "ec2:AttachVolume",
       "ec2:DetachVolume",
+      "iam:GetInstanceProfile",
+      "iam:GetRole"
     ]
 
     resources = ["*"]

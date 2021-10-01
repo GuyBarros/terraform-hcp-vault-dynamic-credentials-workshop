@@ -58,7 +58,23 @@ output "workers" {
 }
 
 
+// output "AWS_ACCESS_KEY_ID"{
+//   value = aws_iam_user.vault_aws_user.unique_id
+// }
+
+
 ////////////////////// HCP //////////////////////
 output "hcp_vault_private_address" {
   value = hcp_vault_cluster.hcp_demostack.vault_private_endpoint_url
 }
+
+////////////////////// Windows //////////////////////
+output "Windows_address" {
+  value = aws_instance.windows.public_dns
+}
+
+output "Windows_password" {
+  value = aws_instance.windows.password_data
+}
+
+
