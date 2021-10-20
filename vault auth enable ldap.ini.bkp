@@ -1,0 +1,52 @@
+
+vault secrets enable -path=ad_demo openldap
+
+
+vault write ad_demo/config \
+   binddn="CN=vaultadmin,CN=Users,DC=trivadislabs,DC=com" \
+   bindpass="P@ssw0rd" \
+   url="ldaps://ec2-3-8-116-230.eu-west-2.compute.amazonaws.com" \
+   schema=ad \
+   insecure_tls=true \
+   starttls=false \
+   ttl=10m
+
+ cat > creation2.ldif <<EOF
+ dn: CN={{.Username}},CN=Users,DC=trivadislabs,DC=com
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+userPrincipalName: {{.Username}}@trivadislabs.com
+sAMAccountName: {{.Username}}
+
+dn: CN={{.Username}},CN=Users,DC=trivadislabs,DC=com
+changetype: modify
+replace: unicodePwd
+unicodePwd::{{ printf "%q" .Password | utf16le | base64 }}
+-
+replace: userAccountControl
+userAccountControl: 66048
+-
+
+dn: CN=Hashicorp APP Admins,OU=Groups,DC=trivadislabs,DC=com
+changetype: modify
+add: member
+member: CN={{.Username}},CN=Users,DC=trivadislabs,DC=com
+-
+EOF
+
+
+cat > destruction2.ldif <<EOF
+dn: cn={{.Username}},CN=Users,DC=trivadislabs,DC=com
+changetype: delete
+EOF
+
+vault write /ad_demo/role/demo creation_ldif=@creation2.ldif  rollback_ldif=@destruction2.ldif deletion_ldif=@destruction2.ldif username_template=v_{{.RoleName}}_{{unix_time}}
+
+
+
+vault read /kv/ci-app-secret
+vault read /ad_demo/creds/demo
+
