@@ -91,6 +91,7 @@ resource "aws_security_group" "demostack" {
   }
 
   # LDAP
+  #TCP
   dynamic "ingress" {
     for_each = var.host_access_ip
     content {
@@ -101,13 +102,34 @@ resource "aws_security_group" "demostack" {
     }
   }
 
-    # sLDAP
+  dynamic "ingress" {
+    for_each = var.host_access_ip
+    content {
+      from_port   = 389
+      to_port     = 389
+      protocol    = "udp"
+      cidr_blocks = [ingress.value]
+    }
+  }
+
+  # sLDAP
+   #TCP
   dynamic "ingress" {
     for_each = var.host_access_ip
     content {
       from_port   = 636
       to_port     = 636
       protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
+  }
+  #UDP
+  dynamic "ingress" {
+    for_each = var.host_access_ip
+    content {
+      from_port   = 636
+      to_port     = 636
+      protocol    = "udp"
       cidr_blocks = [ingress.value]
     }
   }
@@ -142,12 +164,25 @@ resource "aws_security_group" "demostack" {
     protocol    = "tcp"
     cidr_blocks = [hcp_hvn.demostack.cidr_block]
   }
+  ingress {
+    from_port   = 389
+    to_port     = 389
+    protocol    = "udp"
+    cidr_blocks = [hcp_hvn.demostack.cidr_block]
+  }
+
 
 
   ingress {
     from_port   = 636
     to_port     = 636
     protocol    = "tcp"
+    cidr_blocks = [hcp_hvn.demostack.cidr_block]
+  }
+  ingress {
+    from_port   = 636
+    to_port     = 636
+    protocol    = "udp"
     cidr_blocks = [hcp_hvn.demostack.cidr_block]
   }
 

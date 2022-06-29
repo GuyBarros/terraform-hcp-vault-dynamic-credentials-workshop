@@ -1,0 +1,468 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Wed Jun 29 09:31:52 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+LIB_BASE = call "D:\cmder\vendor\lib\lib_base.cmd"
+# environment
+SYSTEMDRIVE = C:
+# environment
+CONEMUARGS2 = 
+# environment
+LC_ALL = C
+# environment
+CONEMUPID = 13408
+# environment
+CONEMUWORKDIR = E:\
+# environment
+CONEMUCFGDIR = D:\cmder\vendor\conemu-maximus5
+# environment
+CONEMUHWND = 0x00070C40
+# environment
+USERPROFILE = C:\Users\phatb
+# environment
+ARCHITECTURE = 64
+# environment
+LOCALAPPDATA = C:\Users\phatb\AppData\Local
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f29769b3-ac53-4c17-908a-0e2c3cfa2831-sock
+# environment
+CONEMUSERVERPID = 15912
+# environment
+VSCODE_CWD = E:\Dropbox\GIT_ROOT\terraform-hcp-vault-dynamic-credentials-workshop
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+SYSTEMROOT = C:\WINDOWS
+# environment
+USER_ALIASES = D:\cmder\config\user_aliases.cmd
+# environment
+FAST_INIT = 0
+# environment
+CONEMUWORKDRIVE = E:
+# environment
+PROCESSOR_LEVEL = 23
+# environment
+PSMODULEPATH = C:\Program Files (x86)\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\PowerShell;C:\Program Files\Intel\Wired Networking\
+# environment
+CMDER_ROOT = D:\cmder
+# default
+MAKE_COMMAND := c:/programdata/chocolatey/lib/make/tools/install/bin/make.exe
+# environment
+GOPATH = C:\Users\phatb\go
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# makefile (from 'Makefile', line 4)
+WORKSPACE_DEMOSTACK = GUY-Instruqt-HCP-Vault
+# environment
+CONEMUTASK = {cmd::Cmder}
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12248_ARLXCJVVDNJALWZE
+# environment
+CMDER_USER_FLAGS = $(subst ,, )
+# environment
+CEXEC = D:\cmder\vendor\bin\cexec.cmd
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+GIT_INSTALL_ROOT = c:\Git
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\phatb\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = C:\Users\phatb\AppData\Local\Temp
+# default
+.INCLUDE_DIRS = .
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# makefile
+MAKEFLAGS = pqrR
+# environment
+CMDER_SHELL = cmd
+# environment
+CMDER_INIT_START =  8:14:10.43
+# environment
+ONEDRIVE = C:\Users\phatb\OneDrive
+# makefile
+CURDIR := e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+CMDER_CONFIGURED = 1
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+ANSICON_DEF = 7
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# environment
+TIME_INIT = 0
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# environment
+ALIASES = D:\cmder\config\user_aliases.cmd
+# automatic
+@F = $(notdir $@)
+# environment
+MAX_DEPTH = 1
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 12248
+# environment
+CONEMUPALETTE = <Current color scheme>
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# environment
+CMDER_ALIASES = 1
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+CONEMUDIR = D:\cmder\vendor\conemu-maximus5
+# environment
+CONEMUDRAWHWND = 0x00060D6A
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+ONEDRIVECONSUMER = C:\Users\phatb\OneDrive
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := c:/git/usr/bin/sh.exe
+# environment
+HOMEPATH = \Users\phatb
+# default
+MAKECMDGOALS := all
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+CONEMUBUILD = 210912
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = D:\cmder\bin;D:\cmder\vendor\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\VMware\VMware Workstation\bin\;c:\python38\scripts\;c:\python38\;c:\programdata\anaconda3;c:\programdata\anaconda3\library\mingw-w64\bin;c:\programdata\anaconda3\library\usr\bin;c:\programdata\anaconda3\library\bin;c:\programdata\anaconda3\scripts;c:\python37\scripts\;c:\python37\;c:\program files (x86)\microsoft sdks\azure\cli2\wbin;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\windows\system32\openssh\;c:\program files\microsoft vs code\bin;c:\program files\putty\;c:\jdk-11.0.2\bin\;c:\program files\cloud foundry;c:\git\cmd;c:\git\mingw64\bin;c:\git\usr\bin;d:\cmder\bin;e:\hashicorp\consul;e:\hashicorp\nomad;e:\hashicorp\packer;e:\hashicorp\terraform;e:\hashicorp\vault;e:\hashicorp\startscripts;e:\hashicorp\consul-template;e:\hashicorp\instruqt;E:\HashiCorp\Boundary;E:\HashiCorp\Doormat;e:\hashicorp\waypoint;c:\programdata\chocolatey\bin;d:\winscp\;c:\program files\dotnet\;c:\program files (x86)\google\cloud sdk\google-cloud-sdk\bin;e:\ngrok-stable-windows-amd64\;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.2\bin;c:\program files\nvidia corporation\nvidia nvdlisr;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\TDM-GCC-64\bin;C:\tools\BCURRAN3;C:\Program Files (x86)\dotnet\;C:\HashiCorp\Vagrant\bin;C:\Program Files\Amazon\AWSCLIV2\;E:\ngrok\;C:\Program Files\Go\bin;C:\Program Files (x86)\Yarn\bin\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.6\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\GitHubDesktop\bin;C:\Users\phatb\go\bin;C:\Users\phatb\.dotnet\tools;E:\ngrok-stable-windows-amd64\;C:\Users\phatb\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\.meteor;C:\TDM-GCC-64\bin;C:\Users\phatb\AppData\Local\Yarn\bin;C:\Users\phatb\go\bin;C:\Users\phatb\AppData\Roaming\npm;C:\Users\phatb\.dotnet\tools;c:\Git\cmd;c:\Git\mingw64\bin;c:\Git\usr\bin;D:\cmder
+# makefile (from 'Makefile', line 3)
+TFC_ORG = emea-se-playground-2019
+# environment
+COMPUTERNAME = DESKTOP-KHFD9VA
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = CLINK $P$G
+# environm 
+ent
+CHOCOLATEYLASTPATHUPDATE = 132777493014962048
+# environment
+CONEMUANSILOG = 
+# environment
+CMDER_INIT_END =  8:14:13.13
+# environment
+CONEMUBASEDIRSHORT = D:\cmder\vendor\conemu-maximus5\ConEmu
+# environment
+LOGONSERVER = \\DESKTOP-KHFD9VA
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = phatb
+# environment
+VERBOSE_OUTPUT = 0
+# environment
+CONEMUHOOKS = Enabled
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+CCALL = call D:\cmder\vendor\bin\cexec.cmd
+# automatic
+?F = $(notdir $?)
+# environment
+CMDER_CLINK = 1
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+LIB_CONSOLE = call "D:\cmder\vendor\lib\lib_console.cmd"
+# environment
+ANSICON = 188x1000 (188x49)
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+# environment
+LIB_PATH = call "D:\cmder\vendor\lib\lib_path.cmd"
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = DESKTOP-KHFD9VA
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# environment
+CONEMUARGS = 
+# makefile
+.DEFAULT_GOAL := all
+# environment
+LIB_GIT = call "D:\cmder\vendor\lib\lib_git.cmd"
+# default
+MAKE_VERSION := 4.3
+# environment
+CONEMUCONFIG = 
+# environment
+CONEMUANSI = ON
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-KHFD9VA
+# environment
+NUMBER_OF_PROCESSORS = 16
+# environment
+PUBLIC = C:\Users\Public
+# environment
+CONEMUBASEDIR = D:\cmder\vendor\conemu-maximus5\ConEmu
+# environment
+APPDATA = C:\Users\phatb\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = C:\Users\phatb
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = C:\Users\phatb\AppData\Local\Temp
+# environment
+TERM = cygwin
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\fd3d6b227981c4e1d2f9c6e5d68e26d8-1.68.1-main-sock
+# environment
+CONEMUBACKHWND = 0x02670CB8
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# environment
+PLINK_PROTOCOL = ssh
+# environment
+FEFLAGNAME = $(subst ,, )
+# environment
+LIB_PROFILE = call "D:\cmder\vendor\lib\lib_profile.cmd"
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+ARCHITECTURE_BITS = 64
+# environment
+NIX_TOOLS = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 7100
+# environment
+DEBUG_OUTPUT = 0
+# environment
+SVN_SSH = c:\\Git\\bin\\ssh.exe
+# environment
+CHOCOLATEYTOOLSLOCATION = C:\tools
+# environment
+CONEMUDRIVE = D:
+# environment
+PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD
+# variable set hash-table stats:
+# Load=157/1024=15%, Rehash=0, Collisions=21/186=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop, mtime 1656491511): 35 files, no impossibilities.
+
+# 35 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+deploy:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+doormat_aws:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+doormat_creds:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-21 07:30:55
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: demostack dns
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
+
+console:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+destroy:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+dns:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+login:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 6):
+	doormat login
+
+demostack:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := demostack
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 8):
+	doormat aws --account se_demos_dev tf-push --local
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: all doormat_creds doormat_aws deploy destroy console
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=13/1024=1%, Rehash=0, Collisions=0/34=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 47 / storage = 550 B / avg = 11 B
+# current buf: size = 8174 B / used = 550 B / count = 47 / avg = 11 B
+
+# strcache performance: lookups = 59 / hit rate = 20%
+# hash-table stats:
+# Load=47/8192=1%, Rehash=0, Collisions=0/59=0%
+# Finished Make data base on Wed Jun 29 09:31:52 2022
+
+ 

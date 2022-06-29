@@ -13,7 +13,7 @@ data "aws_ami" "windows" {
   }
 
   owners = ["801119661308"] # Canonical
-  
+
 }
 
 resource "aws_instance" "windows" {
@@ -40,11 +40,11 @@ resource "aws_instance" "windows" {
 
   tags = merge(local.common_tags ,{
    Purpose        = var.namespace ,
-   function       = "Windows" 
+   function       = "Windows"
    Name            = "${var.namespace}-Windows" ,
    }
   )
-  
 
-  #user_data = element(data.template_cloudinit_config.workers.*.rendered, count.index)
+ get_password_data = true
+  user_data = base64encode(file("${path.module}/templates/windows/init.ps1"))
 }

@@ -10,7 +10,7 @@ resource "aws_db_instance" "mysql" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t3.micro"
-  name                 = "mydb"
+  db_name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
@@ -33,7 +33,7 @@ instance_class         = "db.t3.micro"
  allocated_storage      = 5
 storage_encrypted     = true
 
-name     = "postgress"
+db_name     = "postgress"
 username = "postgresql"
 password = "YourPwdShouldBeLongAndSecure!"
 port     = 5432

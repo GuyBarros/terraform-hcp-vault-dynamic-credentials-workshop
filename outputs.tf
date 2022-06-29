@@ -68,6 +68,10 @@ output "hcp_vault_private_address" {
   value = hcp_vault_cluster.hcp_demostack.vault_private_endpoint_url
 }
 
+output "hcp_vault_public_address" {
+  value = hcp_vault_cluster.hcp_demostack.vault_public_endpoint_url
+}
+
 ////////////////////// Windows //////////////////////
 output "Windows_address" {
   value = aws_instance.windows.public_dns
@@ -75,6 +79,6 @@ output "Windows_address" {
 
 output "Windows_password" {
   value = aws_instance.windows.password_data
-}
+  }
 
 

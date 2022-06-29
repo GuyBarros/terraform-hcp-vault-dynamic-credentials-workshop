@@ -2,7 +2,7 @@ vault auth enable ldap
 
 
 vault write auth/ldap/config \
-    url="ldap://ec2-18-132-2-129.eu-west-2.compute.amazonaws.com" \
+    url="ldaps://ec2-52-56-199-11.eu-west-2.compute.amazonaws.com" \
     userdn="CN=Users,DC=hashidemos,DC=io" \
     groupdn="OU=Groups,DC=hashidemos,DC=io" \
     groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
@@ -28,7 +28,7 @@ vault secrets enable -path=ad_demo openldap
 vault write ad_demo/config \
    binddn="CN=vaultadmin,CN=Users,DC=hashidemos,DC=io" \
    bindpass="P@ssw0rd" \
-   url="ldaps://ec2-18-132-2-129.eu-west-2.compute.amazonaws.com" \
+   url="ldap://ec2-18-130-232-151.eu-west-2.compute.amazonaws.com" \
    schema=ad \
    insecure_tls=true \
    starttls=false \

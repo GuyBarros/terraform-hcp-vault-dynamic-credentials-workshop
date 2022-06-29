@@ -1,0 +1,7 @@
+make: Entering directory 'e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop'
+doormat aws --account se_demos_dev tf-push --local
+ 
+make: *** No rule to make target 'dns', needed by 'all'.
+
+make: Leaving directory 'e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop'
+ 
