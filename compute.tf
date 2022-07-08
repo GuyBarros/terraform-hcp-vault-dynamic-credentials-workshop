@@ -1,5 +1,5 @@
 # Gzip cloud-init config
-data "template_cloudinit_config" "workers" {
+data "cloudinit_config" "workers" {
 
   gzip          = true
   base64_encode = true
@@ -53,7 +53,7 @@ resource "aws_instance" "workers" {
 
   tags = merge(local.common_tags ,{
    Purpose        = var.namespace ,
-   function       = "Linux" 
+   function       = "Linux"
    Name            = "${var.namespace}-Linux" ,
    }
   )

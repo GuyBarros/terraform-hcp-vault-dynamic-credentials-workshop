@@ -5,9 +5,8 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Wed Jun 29 09:31:52 2022
+# Make data base, printed on Fri Jul 08 15:48:40 2022
 
 # Variables
 
@@ -22,13 +21,13 @@ CONEMUARGS2 =
 # environment
 LC_ALL = C
 # environment
-CONEMUPID = 13408
+CONEMUPID = 14428
 # environment
 CONEMUWORKDIR = E:\
 # environment
 CONEMUCFGDIR = D:\cmder\vendor\conemu-maximus5
 # environment
-CONEMUHWND = 0x00070C40
+CONEMUHWND = 0x000316B0
 # environment
 USERPROFILE = C:\Users\phatb
 # environment
@@ -36,9 +35,7 @@ ARCHITECTURE = 64
 # environment
 LOCALAPPDATA = C:\Users\phatb\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f29769b3-ac53-4c17-908a-0e2c3cfa2831-sock
-# environment
-CONEMUSERVERPID = 15912
+CONEMUSERVERPID = 8272
 # environment
 VSCODE_CWD = E:\Dropbox\GIT_ROOT\terraform-hcp-vault-dynamic-credentials-workshop
 # environment
@@ -68,7 +65,7 @@ WORKSPACE_DEMOSTACK = GUY-Instruqt-HCP-Vault
 # environment
 CONEMUTASK = {cmd::Cmder}
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12248_ARLXCJVVDNJALWZE
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_17612_OKFZQILYZWKAPMCC
 # environment
 CMDER_USER_FLAGS = $(subst ,, )
 # environment
@@ -83,14 +80,12 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 %D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
-# environment
-VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
 GIT_INSTALL_ROOT = c:\Git
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\phatb\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = C:\Users\phatb\AppData\Roaming\Code\CachedData\92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
 LANG = C
 # default
@@ -106,13 +101,11 @@ MAKEFLAGS = pqrR
 # environment
 CMDER_SHELL = cmd
 # environment
-CMDER_INIT_START =  8:14:10.43
+CMDER_INIT_START = 10:21:33.12
 # environment
 ONEDRIVE = C:\Users\phatb\OneDrive
 # makefile
 CURDIR := e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 CMDER_CONFIGURED = 1
 # environment
@@ -142,9 +135,7 @@ ALIASES = D:\cmder\config\user_aliases.cmd
 # environment
 MAX_DEPTH = 1
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-VSCODE_PID = 12248
+VSCODE_PID = 17612
 # environment
 CONEMUPALETTE = <Current color scheme>
 # automatic
@@ -158,7 +149,7 @@ CMDER_ALIASES = 1
 # environment
 CONEMUDIR = D:\cmder\vendor\conemu-maximus5
 # environment
-CONEMUDRAWHWND = 0x00060D6A
+CONEMUDRAWHWND = 0x000116CA
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
@@ -186,7 +177,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = D:\cmder\bin;D:\cmder\vendor\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\VMware\VMware Workstation\bin\;c:\python38\scripts\;c:\python38\;c:\programdata\anaconda3;c:\programdata\anaconda3\library\mingw-w64\bin;c:\programdata\anaconda3\library\usr\bin;c:\programdata\anaconda3\library\bin;c:\programdata\anaconda3\scripts;c:\python37\scripts\;c:\python37\;c:\program files (x86)\microsoft sdks\azure\cli2\wbin;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\windows\system32\openssh\;c:\program files\microsoft vs code\bin;c:\program files\putty\;c:\jdk-11.0.2\bin\;c:\program files\cloud foundry;c:\git\cmd;c:\git\mingw64\bin;c:\git\usr\bin;d:\cmder\bin;e:\hashicorp\consul;e:\hashicorp\nomad;e:\hashicorp\packer;e:\hashicorp\terraform;e:\hashicorp\vault;e:\hashicorp\startscripts;e:\hashicorp\consul-template;e:\hashicorp\instruqt;E:\HashiCorp\Boundary;E:\HashiCorp\Doormat;e:\hashicorp\waypoint;c:\programdata\chocolatey\bin;d:\winscp\;c:\program files\dotnet\;c:\program files (x86)\google\cloud sdk\google-cloud-sdk\bin;e:\ngrok-stable-windows-amd64\;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.2\bin;c:\program files\nvidia corporation\nvidia nvdlisr;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\TDM-GCC-64\bin;C:\tools\BCURRAN3;C:\Program Files (x86)\dotnet\;C:\HashiCorp\Vagrant\bin;C:\Program Files\Amazon\AWSCLIV2\;E:\ngrok\;C:\Program Files\Go\bin;C:\Program Files (x86)\Yarn\bin\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.6\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\GitHubDesktop\bin;C:\Users\phatb\go\bin;C:\Users\phatb\.dotnet\tools;E:\ngrok-stable-windows-amd64\;C:\Users\phatb\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\.meteor;C:\TDM-GCC-64\bin;C:\Users\phatb\AppData\Local\Yarn\bin;C:\Users\phatb\go\bin;C:\Users\phatb\AppData\Roaming\npm;C:\Users\phatb\.dotnet\tools;c:\Git\cmd;c:\Git\mingw64\bin;c:\Git\usr\bin;D:\cmder
+PATH = D:\cmder\bin;D:\cmder\vendor\bin;D:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\cmder\vendor\conemu-maximus5;D:\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\VMware\VMware Workstation\bin\;c:\python38\scripts\;c:\python38\;c:\programdata\anaconda3;c:\programdata\anaconda3\library\mingw-w64\bin;c:\programdata\anaconda3\library\usr\bin;c:\programdata\anaconda3\library\bin;c:\programdata\anaconda3\scripts;c:\python37\scripts\;c:\python37\;c:\program files (x86)\microsoft sdks\azure\cli2\wbin;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\windows\system32\openssh\;c:\program files\microsoft vs code\bin;c:\program files\putty\;c:\jdk-11.0.2\bin\;c:\program files\cloud foundry;c:\git\cmd;c:\git\mingw64\bin;c:\git\usr\bin;d:\cmder\bin;e:\hashicorp\consul;e:\hashicorp\nomad;e:\hashicorp\packer;e:\hashicorp\terraform;e:\hashicorp\vault;e:\hashicorp\startscripts;e:\hashicorp\consul-template;e:\hashicorp\instruqt;E:\HashiCorp\Boundary;E:\HashiCorp\Doormat;e:\hashicorp\waypoint;c:\programdata\chocolatey\bin;d:\winscp\;c:\program files\dotnet\;c:\program files (x86)\google\cloud sdk\google-cloud-sdk\bin;e:\ngrok-stable-windows-amd64\;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.2\bin;c:\program files\nvidia corporation\nvidia nvdlisr;c:\programdata\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\TDM-GCC-64\bin;C:\tools\BCURRAN3;C:\Program Files (x86)\dotnet\;C:\HashiCorp\Vagrant\bin;C:\Program Files\Amazon\AWSCLIV2\;E:\ngrok\;C:\Program Files\Go\bin;C:\Program Files (x86)\Yarn\bin\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.6\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\GitHubDesktop\bin;C:\Users\phatb\go\bin;C:\Users\phatb\.dotnet\tools;E:\ngrok-stable-windows-amd64\;C:\Users\phatb\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\phatb\AppData\Local\Microsoft\WindowsApps;C:\Users\phatb\AppData\Local\.meteor;C:\TDM-GCC-64\bin;C:\Users\phatb\AppData\Local\Yarn\bin;C:\Users\phatb\go\bin;C:\Users\phatb\AppData\Roaming\npm;C:\Users\phatb\.dotnet\tools;C:\Program Files\Puppet Labs\Bolt\bin;c:\Git\cmd;c:\Git\mingw64\bin;c:\Git\usr\bin;D:\cmder
 # makefile (from 'Makefile', line 3)
 TFC_ORG = emea-se-playground-2019
 # environment
@@ -197,19 +188,16 @@ MAKEFILES :=
 ^F = $(notdir $^)
 # environment
 PROMPT = CLINK $P$G
-# environm 
-ent
+# environment
 CHOCOLATEYLASTPATHUPDATE = 132777493014962048
 # environment
 CONEMUANSILOG = 
 # environment
-CMDER_INIT_END =  8:14:13.13
+CMDER_INIT_END = 10:21:36.60
 # environment
 CONEMUBASEDIRSHORT = D:\cmder\vendor\conemu-maximus5\ConEmu
 # environment
 LOGONSERVER = \\DESKTOP-KHFD9VA
-# environment
-VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = phatb
 # environment
@@ -229,7 +217,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 LIB_CONSOLE = call "D:\cmder\vendor\lib\lib_console.cmd"
 # environment
-ANSICON = 188x1000 (188x49)
+ANSICON = 125x1000 (125x43)
 # environment
 PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
 # environment
@@ -285,9 +273,9 @@ TEMP = C:\Users\phatb\AppData\Local\Temp
 # environment
 TERM = cygwin
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\fd3d6b227981c4e1d2f9c6e5d68e26d8-1.68.1-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\fd3d6b227981c4e1d2f9c6e5d68e26d8-1.69.0-main-sock
 # environment
-CONEMUBACKHWND = 0x02670CB8
+CONEMUBACKHWND = 0x000116C8
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -327,7 +315,7 @@ CONEMUDRIVE = D:
 # environment
 PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD
 # variable set hash-table stats:
-# Load=157/1024=15%, Rehash=0, Collisions=21/186=11%
+# Load=152/1024=15%, Rehash=0, Collisions=20/181=11%
 
 # Pattern-specific Variable Values
 
@@ -335,7 +323,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD
 
 # Directories
 
-# . (key e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop, mtime 1656491511): 35 files, no impossibilities.
+# . (key e:/Dropbox/GIT_ROOT/terraform-hcp-vault-dynamic-credentials-workshop, mtime 1656513550): 35 files, no impossibilities.
 
 # 35 files, no impossibilities in 1 directories.
 
@@ -457,12 +445,12 @@ demostack:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 47 / storage = 550 B / avg = 11 B
-# current buf: size = 8174 B / used = 550 B / count = 47 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 47 / storage = 554 B / avg = 11 B
+# current buf: size = 8174 B / used = 554 B / count = 47 / avg = 11 B
 
 # strcache performance: lookups = 59 / hit rate = 20%
 # hash-table stats:
 # Load=47/8192=1%, Rehash=0, Collisions=0/59=0%
-# Finished Make data base on Wed Jun 29 09:31:52 2022
+# Finished Make data base on Fri Jul 08 15:48:40 2022
 
  

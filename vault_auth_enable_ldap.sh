@@ -2,7 +2,7 @@ vault auth enable ldap
 
 
 vault write auth/ldap/config \
-    url="ldaps://ec2-52-56-199-11.eu-west-2.compute.amazonaws.com" \
+    url="ldaps://ec2-3-10-198-233.eu-west-2.compute.amazonaws.com" \
     userdn="CN=Users,DC=hashidemos,DC=io" \
     groupdn="OU=Groups,DC=hashidemos,DC=io" \
     groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
